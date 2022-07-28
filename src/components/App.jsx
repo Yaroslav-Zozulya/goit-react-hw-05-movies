@@ -12,7 +12,6 @@ const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 const App = () => {
   return (
     <Suspense fallback={<Loader />}>
-      <Layout />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
