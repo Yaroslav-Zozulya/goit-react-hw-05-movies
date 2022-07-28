@@ -52,11 +52,11 @@ const MovieDetails = () => {
         <p>{overview}</p>
         <h2>Genres</h2>
         <p>
-          {item.genres.length > 0 ? (
+          {/* {item.genres.length > 0 ? (
             <p>{item.genres.map(genre => genre.name).join(', ')}</p>
           ) : (
             'not found'
-          )}
+          )} */}
         </p>
         <hr />
         <p>Additional information</p>
