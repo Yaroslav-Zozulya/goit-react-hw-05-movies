@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Loader from 'components/Loader/Loader';
 import image from 'images/notFound.jpg';
@@ -10,42 +10,53 @@ const Link = styled(NavLink)`
 `;
 
 const MovieDetails = () => {
-  const { item, loading } = useFetchItem();
+  const { item, loading, title } = useFetchItem();
   console.log(item);
   // const { title, overview, poster_path, release_date, genres } = item;
+  // if (item) {
+  //   console.log(item);
+  //   const title = item.title;
+  //   console.log(title);
+  // }
 
-  // const poster = poster_path
-  //   ? `https://image.tmdb.org/t/p/w500${poster_path}`
-  //   : image;
-
-  // const itemOverview = overview || `We don't have information 🙄`;
-
+  if (item) {
+    console.log(`if item: ${item}`);
+  }
   return (
     <>
-      {/* {loading && <Loader />}
-      <div>
-        <img src={poster} alt="" />
+      {loading && <Loader />}
+      {item && (
+        <div>
+          <img
+            src={
+              item.poster_path
+                ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                : image
+            }
+            alt=""
+          />
 
-        <h1>
-          {title} ({release_date && release_date.slice(0, 4)})
-        </h1>
-        <p></p>
-        <h2>Overview</h2>
-        <p>{itemOverview}</p>
-        <h2>Genres</h2> */}
-      {/* <div>
-          {genres.length > 0 ? (
-            <p>{genres.map(genre => genre.name).join(', ')}</p>
-          ) : (
-            <p>No genres found</p>
-          )}
-        </div> */}
-      {/* <hr />
-        <p>Additional information</p>
-        <Link to="">Cast</Link>
-        <Link to="">Reviews</Link>
-        <hr />
-      </div> */}
+          <h1>
+            {title} ({item.release_date && item.release_date.slice(0, 4)})
+          </h1>
+          <p></p>
+          <h2>Overview</h2>
+          <p>{item.overview}</p>
+          <h2>Genres</h2>
+          <div>
+            {item.genres.length > 0 ? (
+              <p>{item.genres.map(genre => genre.name).join(', ')}</p>
+            ) : (
+              <p>No genres found</p>
+            )}
+          </div>
+          <hr />
+          <p>Additional information</p>
+          <Link to="">Cast</Link>
+          <Link to="">Reviews</Link>
+          <hr />
+        </div>
+      )}
     </>
   );
 };
